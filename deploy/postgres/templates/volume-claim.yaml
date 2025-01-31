@@ -1,15 +1,11 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: postgres-volume-claim
-  labels:
-    app: postgres
+  name: postgres-pvc
 spec:
-  storageClassName: {{ .Values.volume.spec.storageClassName }}
-  {{- with .Values.volume.spec.accessModes }}
   accessModes:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
+    - ReadWriteOnce
   resources:
     requests:
-      storage: {{ .Values.volume.spec.capacity.storage }}
+      storage: {{ .Values.postgresql.storage.size }}
+  storageClassName: {{ .Values.postgresql.storage.storageClass | default "" | quote }}

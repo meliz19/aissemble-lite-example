@@ -1,61 +1,17 @@
-# Default values for postgres.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+postgresql:
+  image: "postgres:15"
+  port: 5432
+  storage:
+    size: "5Gi"
+    storageClass: ""  # Leave empty to use default storage class
+  username: "admin"
+  password: "adminpassword"
+  database: "mydb"
 
-replicaCount: 1
-
-hostname: postgres
-image:
-  name: postgres
-  imagePullPolicy: Always
-  dockerRepo: ""
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "12.11-bullseye"
-
-service:
-  spec:
-    ports:
-    - name: "5432"
-      protocol: TCP
-      port: 5432
-      targetPort: 5432
-    type: NodePort
-
-deployment:
-  ports:
-  - name: sql
-    containerPort: 5432
-    protocol: TCP
-  env:
-  - name: POSTGRES_USER
-    value: postgres
-  - name: POSTGRES_PASSWORD
-    value: password
-  - name: POSTGRES_DB
-    value: db
-  restartPolicy: Always
-
-volume:
-  spec:
-    storageClassName: manual
-    capacity:
-      storage: "10Gi"
-    accessModes:
-    - ReadWriteMany
-    hostPath:
-      path: /data/postgresql
-
-job:
-  image:
-    name: boozallen/flyway-migration
-  restartPolicy: OnFailure
-  env:
-  - name: FLYWAY_URL
-    value: jdbc:postgresql://postgres:5432/db
-  - name: FLYWAY_USER
-    value: postgres
-  - name: FLYWAY_PASSWORD
-    value: password
-
-ingress:
-  enabled: false
+flyway:
+  image: "flyway/flyway:9.0"
+  migrateCommand: ["migrate"]
+  migrationDir: "/flyway/sql"
+  initContainerImage: "busybox"
+  sqlScripts:
+    - "CREATE TABLE IF NOT EXISTS users (id SERIAL PRIMARY KEY, name VARCHAR(255));"
