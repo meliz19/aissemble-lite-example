@@ -3,7 +3,7 @@ postgresql:
   port: 5432
   storage:
     size: "5Gi"
-    storageClass: ""  # Leave empty to use default storage class
+    storageClass: "manual"  # Leave empty to use default storage class
   username: "admin"
   password: "adminpassword"
   database: "mydb"
