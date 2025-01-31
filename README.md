@@ -15,7 +15,9 @@ To create this project, we ran `poetry new --src aissemble-lite-example`. Doing 
 ```
 
 ## Docker 
-### Build Docker Image
+### Build Docker Images
+For each module within ./docker, follow the steps in the module-level README to build the Docker image.
+
 ```
 docker build -t boozallen/aissemble-lite:0.0.1 -f ./docker/notebooks/Dockerfile .
 ```
