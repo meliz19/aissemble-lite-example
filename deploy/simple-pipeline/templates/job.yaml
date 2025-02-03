@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: simple-pipeline-job
+  namespace: {{ .Values.metadata.namespace }}
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      containers:
+      - name: no-op
+        image: {{ .Values.job.image }}
+        env:
+        - name: MODE
+          value: "no-op"
+      restartPolicy: Never
