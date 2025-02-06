@@ -32,5 +32,10 @@ docker run -it --rm boozallen/debug-python-in-k8s-env-simple-pipeline:0.0.1
 ## Helm
 ### Run Helm Chart
 ```
- helm install simple-pipeline ./deploy/simple-pipeline --create-namespace --namespace debug-python-in-k8s-env
+helm install simple-pipeline ./deploy/simple-pipeline --create-namespace --namespace debug-python-in-k8s-env
  ```
+
+### Uninstall
+```
+helm uninstall simple-pipeline --namespace debug-python-in-k8s-env
+```

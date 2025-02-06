@@ -7,5 +7,12 @@ metadata:
 
 job:
   image: boozallen/debug-python-in-k8s-env-simple-pipeline:0.0.1
+  env:
+  - name: MODE
+    value: "no-op"
+  - name: DEBUG_MODE
+    value: "1"
+  ports:
+  - containerPort: 5678
 
 favoriteDrink: coffee

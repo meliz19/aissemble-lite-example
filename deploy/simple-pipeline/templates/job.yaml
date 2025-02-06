@@ -10,7 +10,12 @@ spec:
       containers:
       - name: no-op
         image: {{ .Values.job.image }}
+        {{- with .Values.job.env }}
         env:
-        - name: MODE
-          value: "no-op"
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+        {{- with .Values.job.ports }}
+        ports:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
       restartPolicy: Never
