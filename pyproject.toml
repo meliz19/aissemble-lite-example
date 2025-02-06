@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "aissemble-lite-example"
+name = "debug-python-in-k8s-env"
 version = "0.1.0"
 description = ""
 authors = ["Margaret Black <black_margaret@bah.com>"]
 readme = "README.md"
-packages = [{include = "aissemble_lite_example", from = "src"}]
+packages = [{include = "debug_python_in_k8s_env_example", from = "src"}]
 
 [tool.poetry.dependencies]
 python = ">=3.10"

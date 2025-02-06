@@ -24,6 +24,6 @@ COPY ../../pyproject.toml .
 
 RUN poetry sync --no-root
 
-COPY ../../src/aissemble_lite_example/ .
+COPY ../../src/debug_python_in_k8s_env_example/ .
 
 CMD ["poetry", "run", "python", "driver.py"]

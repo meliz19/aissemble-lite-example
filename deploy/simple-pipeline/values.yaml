@@ -3,9 +3,9 @@
 # Declare variables to be passed into your templates.
 
 metadata:
-  namespace: aissemble-lite-example
+  namespace: debug-python-in-k8s-env
 
 job:
-  image: boozallen/aissemble-lite-simple-pipeline:0.0.1
+  image: boozallen/debug-python-in-k8s-env-simple-pipeline:0.0.1
 
 favoriteDrink: coffee
